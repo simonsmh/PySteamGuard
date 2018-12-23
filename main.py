@@ -3,13 +3,14 @@
 
 SHARED_SECRET = ''
 
-
 import hmac
 import math
 import time
 import base64
 import hashlib
 import sys
+
+import pyperclip
 
 def get_guard_code(key, timestamp=time.time()):
     steam_guard_code_table = [50, 51, 52, 53, 54, 55, 56, 57, 66, 67, 68, 70, 71,
@@ -32,5 +33,7 @@ def get_guard_code(key, timestamp=time.time()):
 
 if __name__ == '__main__':
     (code, time) = get_guard_code(SHARED_SECRET)
+    pyperclip.copy(code)
     sys.stdout.write('{}\n'.format(code))
     sys.stderr.write('{}s\n'.format(time))
+    sys.exit(0)
